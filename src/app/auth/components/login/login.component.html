@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="login-header-wrapper">
+        <mat-card class="card-wrapper">
+            <mat-card-header>
+                <h2>LOGIN</h2>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="user-form" [formGroup]="userForm">
+                    <mat-form-field class="form-field" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" appInputTrim>
+                        <mat-error *ngIf="hasError('email','required')">
+                            Email is required!
+                        </mat-error>
+                        <mat-error *ngIf="hasError('email','email')">
+                            Please enter a valid email!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-field" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" appInputTrim>
+                        <mat-error *ngIf="hasError('password','required')">
+                            Password is required!
+                        </mat-error>
+                        <mat-error *ngIf="hasError('password','pattern')">
+                            Should contain at least a capital letter, small letter, number, special character and
+                            minimum length should be 8!
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="example-button-row">
+                        <button mat-raised-button (click)="resetUserForm()">Reset</button>
+                        <button mat-raised-button color="primary" (click)="loginUserForm()">Sign In</button>
+                    </div>
+                </form>
+            </mat-card-content>
+            <div class="register-wrap">
+                <span class="text-center mr-3">Don't have an account?</span>
+                <button mat-raised-button color="primary" routerLink="/signup">Signup</button>
+            </div>
+        </mat-card>
+    </div>
+</div>

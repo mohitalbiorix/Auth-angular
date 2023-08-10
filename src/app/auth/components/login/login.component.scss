@@ -1,0 +1,47 @@
+.login-header-wrapper {
+  margin-top: 25px;
+
+  .card-wrapper {
+    .mat-mdc-card-header {
+      text-align: center !important;
+      display: block !important;
+    }
+
+    .user-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+
+      .mat-mdc-form-field {
+        margin-top: 15px;
+      }
+
+      .form-field {
+        width: 100%;
+      }
+
+      .example-button-row {
+        display: table-cell;
+        max-width: 600px;
+        float: right;
+      }
+
+      .example-button-row .mat-mdc-button-base {
+        margin: 8px 8px 8px 0;
+      }
+    }
+
+  }
+
+  .register-wrap {
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    .mr-3 {
+      margin-right: 5px;
+    }
+  }
+
+}

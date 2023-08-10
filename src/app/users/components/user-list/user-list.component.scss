@@ -1,0 +1,40 @@
+.container {
+  margin-top: 80px;
+
+  .filter {
+    display: flex;
+    justify-content: space-between;
+
+    .filter-wrap {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .mat-mdc-form-field {
+    width: 30%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-mdc-paginator {
+    margin-top: 2px;
+  }
+
+  .mat-mdc-card {
+    .mat-mdc-card-content {
+      margin-top: auto;
+      margin-bottom: auto;
+      border-radius: 0px;
+    }
+
+    height: 80px;
+  }
+
+  .mat-icon {
+    margin-right: 15px;
+    cursor: pointer;
+  }
+}

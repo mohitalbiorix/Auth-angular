@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="registration-header-wrapper">
+        <mat-card class="card-wrapper">
+            <mat-card-header>
+                <h2>REGISTRATION</h2>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="user-form" [formGroup]="userForm">
+                    <div class="form-field-wrapper">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput type="text" formControlName="firstName" appOnlyAlphabet>
+                            <mat-error *ngIf="hasError('firstName','required')">
+                                FirstName is required!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput type="text" formControlName="lastName" appOnlyAlphabet>
+                            <mat-error *ngIf="hasError('lastName','required')">
+                                LastName is required!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="text" formControlName="email">
+                            <mat-error *ngIf="hasError('email','required')">
+                                Email Address is required!
+                            </mat-error>
+                            <mat-error *ngIf="hasError('email','email')">
+                                Please enter valid email address!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-field-wrapper">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Phone</mat-label>
+                            <input matInput type="text" formControlName="phone" minlength="10" maxlength="10"
+                                appOnlyNumeric>
+                            <mat-error *ngIf="hasError('phone','required')">
+                                Phone is required!
+                            </mat-error>
+                            <mat-error *ngIf="hasError('phone','minlength')">
+                                Please enter valid phone number!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="password" appInputTrim>
+                            <mat-error *ngIf="hasError('password','required')">
+                                Password is required!
+                            </mat-error>
+                            <mat-error *ngIf="hasError('password','pattern')">
+                                Should contain at least a capital letter, small letter, number, special character and
+                                minimum length should be 8!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput type="password" formControlName="confirm_password" appInputTrim>
+                            <mat-error *ngIf="hasError('confirm_password','required')">
+                                Confirm password is required!
+                            </mat-error>
+                            <mat-error *ngIf="hasError('confirm_password','confirmedValidator')">
+                                Password and ConfirmPassword not match
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="example-button-row">
+                        <button mat-raised-button (click)="resetUserForm()">Reset</button>
+                        <button mat-raised-button color="primary" (click)="registration()">SignUp</button>
+                    </div>
+                </form>
+                <div class="back-button">
+                    <button mat-raised-button color="primary" routerLink="/"><mat-icon>arrow_back</mat-icon></button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
