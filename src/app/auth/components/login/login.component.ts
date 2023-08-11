@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   userForm!: FormGroup;
-  userData: User[] = [];
+  userLoginData: User[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initUserForm();
-    this.userService.getAllUser().subscribe({
-      next: (users: any) => {
-        this.userData = users;
+    this.userService.getRegistredUsers().subscribe({
+      next: (users: User[]) => {
+        this.userLoginData = users;
       },
       error: (err) => {
         console.error('An error occurred :', err);
@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  initUserForm() {
+  // Initialization of user form.
+  initUserForm(): void {
     this.userForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -53,18 +54,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  resetUserForm() {
+  // reset user form
+  resetUserForm(): void {
     this.userForm.reset();
   }
 
-  loginUserForm() {
-    const email = this.userForm.value.email;
-    const password = this.userForm.value.password;
+  // save login form
+  saveLoginForm(): void {
+    const { email, password } = this.userForm.value;
     if (this.userForm.invalid) {
       return;
     }
-    if (this.userData.length) {
-      const user = this.userData.filter((data) => {
+    if (this.userLoginData.length) {
+      const user = this.userLoginData.filter((data) => {
         return data.email === email && data.password === password;
       });
       if (user.length) {
@@ -78,11 +80,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  goToRegister() {
+  // Go to user register page.
+  goToRegister(): void {
     this._location.back();
   }
 
-  public hasError(controlName: string, errorName: string) {
+  // error function that showing error message
+  public hasError(controlName: string, errorName: string): boolean {
     return this.userForm.controls[controlName].hasError(errorName);
   }
 }

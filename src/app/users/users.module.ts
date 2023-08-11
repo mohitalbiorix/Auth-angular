@@ -6,6 +6,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { EditUserInfoComponent } from './components/edit-user-info/edit-user-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatSortModule
   ]
 })
 export class UsersModule { }

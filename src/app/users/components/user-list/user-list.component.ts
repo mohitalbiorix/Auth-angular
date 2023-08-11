@@ -10,6 +10,7 @@ import { EditUserInfoComponent } from '../edit-user-info/edit-user-info.componen
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-user-list',
@@ -18,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserListComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = [
     'id',
     'firstName',
@@ -43,10 +45,11 @@ export class UserListComponent implements AfterViewInit {
     this.getAllUser();
   }
 
+  // get all registered users from resolver route
   getAllUser() {
     this.activatedRoute.data.subscribe({
-      next: (res: any) => {
-        const { users } = res;
+      next: (usersData) => {
+        const { users } = usersData;
         this.dataSource.data = users;
       },
       error: (err) => console.log(err),
@@ -56,8 +59,10 @@ export class UserListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
+  // delete registered user
   deleteUser(userId: number) {
     const dialogRef = this.dialog.open(ConfirmationDialougComponent, {
       width: '400px',
@@ -66,9 +71,21 @@ export class UserListComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (Boolean(result)) {
         this.userService.deleteUser(userId).subscribe({
-          next: () => {
-            this.getAllUser();
-            this.notificationService.success('User Deleted Successfull!');
+          next: (user: User) => {
+            if (user) {
+              this.userService.getRegistredUsers().subscribe({
+                next: (users: User[]) => {
+                  if (users) {
+                    this.dataSource.data = users;
+                    this.notificationService.success(
+                      'User Deleted Successfull!'
+                    );
+                  }
+                },
+                error: (err) => console.log(err),
+                complete: () => console.log('completed'),
+              });
+            }
           },
           error: (err) => {
             console.log(err);
@@ -83,8 +100,9 @@ export class UserListComponent implements AfterViewInit {
     });
   }
 
+  // edit registerd user info
   async editUserInfo(userId: number) {
-    let userData;
+    let userData: User;
     this.userService.getUserById(userId).subscribe({
       next: (user) => {
         userData = user;
@@ -95,12 +113,24 @@ export class UserListComponent implements AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe({
-          next: (res) => {
-            if (res?.user) {
-              this.userService.updateUser(userId, res.user).subscribe({
-                next: (res) => {
-                  this.notificationService.success('User Updated Successfull!');
-                  this.getAllUser();
+          next: ({ user }) => {
+            if (user) {
+              this.userService.updateUser(userId, user).subscribe({
+                next: (updatedUser) => {
+                  if (updatedUser) {
+                    this.userService.getRegistredUsers().subscribe({
+                      next: (users: User[]) => {
+                        if (users) {
+                          this.dataSource.data = users;
+                          this.notificationService.success(
+                            'User Updated Successfull!'
+                          );
+                        }
+                      },
+                      error: (err) => console.log(err),
+                      complete: () => console.log('completed'),
+                    });
+                  }
                 },
                 error: (err) => console.log(err),
                 complete: () => console.log('complete'),
@@ -116,17 +146,20 @@ export class UserListComponent implements AfterViewInit {
     });
   }
 
-  resetFilterInput(input: any) {
+  // reset filter input
+  resetFilterInput(input: HTMLInputElement) {
     input.value = '';
     const filterValue = input.value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  // apply filter on input
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  // logout user
   logoutUser() {
     this.authService.removeUser();
     this.router.navigate(['/']);

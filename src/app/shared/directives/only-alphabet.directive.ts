@@ -7,7 +7,7 @@ export class OnlyAlphabetDirective {
   constructor(private el: ElementRef) {}
 
   @HostListener('input', ['$event'])
-  onInputChange(event: any) {
+  onInputChange(event: Event) {
     const initialValue = this.el.nativeElement.value;
     this.el.nativeElement.value = initialValue.replace(/[^a-zA-Z]/g, '');
     if (initialValue !== this.el.nativeElement.value) {

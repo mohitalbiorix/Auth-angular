@@ -1,5 +1,6 @@
 <div class="container">
     <div class="registration-header-wrapper">
+        <!--Card Start-->
         <mat-card class="card-wrapper">
             <mat-card-header>
                 <h2>REGISTRATION</h2>
@@ -7,6 +8,7 @@
             <mat-card-content>
                 <form class="user-form" [formGroup]="userForm">
                     <div class="form-field-wrapper">
+                        <!--FirstName-->
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>First Name</mat-label>
                             <input matInput type="text" formControlName="firstName" appOnlyAlphabet>
@@ -14,6 +16,8 @@
                                 FirstName is required!
                             </mat-error>
                         </mat-form-field>
+
+                        <!--LastName-->
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Last Name</mat-label>
                             <input matInput type="text" formControlName="lastName" appOnlyAlphabet>
@@ -21,9 +25,11 @@
                                 LastName is required!
                             </mat-error>
                         </mat-form-field>
+
+                        <!--Email-->
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input matInput type="text" formControlName="email">
+                            <input matInput type="text" formControlName="email" appInputTrim>
                             <mat-error *ngIf="hasError('email','required')">
                                 Email Address is required!
                             </mat-error>
@@ -33,6 +39,7 @@
                         </mat-form-field>
                     </div>
                     <div class="form-field-wrapper">
+                        <!--Phone-->
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Phone</mat-label>
                             <input matInput type="text" formControlName="phone" minlength="10" maxlength="10"
@@ -44,6 +51,8 @@
                                 Please enter valid phone number!
                             </mat-error>
                         </mat-form-field>
+
+                        <!--Password-->
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Password</mat-label>
                             <input matInput type="password" formControlName="password" appInputTrim>
@@ -55,6 +64,8 @@
                                 minimum length should be 8!
                             </mat-error>
                         </mat-form-field>
+
+                        <!--Confirm Password-->
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Confirm Password</mat-label>
                             <input matInput type="password" formControlName="confirm_password" appInputTrim>
@@ -66,9 +77,11 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
+
+                    <!--Buttons-->
                     <div class="example-button-row">
                         <button mat-raised-button (click)="resetUserForm()">Reset</button>
-                        <button mat-raised-button color="primary" (click)="registration()">SignUp</button>
+                        <button mat-raised-button color="primary" (click)="saveRegistrationForm()">SignUp</button>
                     </div>
                 </form>
                 <div class="back-button">
@@ -76,5 +89,6 @@
                 </div>
             </mat-card-content>
         </mat-card>
+        <!--Card End-->
     </div>
 </div>

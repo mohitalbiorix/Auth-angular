@@ -1,3 +1,12 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "firstName": "Mohitrr",
+      "lastName": "Kapadiyaee",
+      "email": "mkpatel@gmail.com",
+      "phone": "9326754645",
+      "password": "Mkpatel@1234",
+      "id": 2
+    }
+  ]
 }

@@ -1,11 +1,13 @@
 <div class="container">
     <div class="login-header-wrapper">
+        <!--Card Start-->
         <mat-card class="card-wrapper">
             <mat-card-header>
                 <h2>LOGIN</h2>
             </mat-card-header>
             <mat-card-content>
                 <form class="user-form" [formGroup]="userForm">
+                    <!-- Email field-->
                     <mat-form-field class="form-field" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email" appInputTrim>
@@ -16,6 +18,8 @@
                             Please enter a valid email!
                         </mat-error>
                     </mat-form-field>
+
+                    <!--Password field-->
                     <mat-form-field class="form-field" appearance="outline">
                         <mat-label>Password</mat-label>
                         <input matInput formControlName="password" appInputTrim>
@@ -27,16 +31,21 @@
                             minimum length should be 8!
                         </mat-error>
                     </mat-form-field>
+
+                    <!--Button-->
                     <div class="example-button-row">
                         <button mat-raised-button (click)="resetUserForm()">Reset</button>
-                        <button mat-raised-button color="primary" (click)="loginUserForm()">Sign In</button>
+                        <button mat-raised-button color="primary" (click)="saveLoginForm()">Login</button>
                     </div>
                 </form>
             </mat-card-content>
+
+            <!--SignUp-->
             <div class="register-wrap">
                 <span class="text-center mr-3">Don't have an account?</span>
-                <button mat-raised-button color="primary" routerLink="/signup">Signup</button>
+                <button mat-raised-button color="primary" routerLink="/signup">SignUp</button>
             </div>
         </mat-card>
+        <!--Card End-->
     </div>
 </div>

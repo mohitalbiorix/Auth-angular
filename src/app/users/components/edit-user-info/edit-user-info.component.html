@@ -2,25 +2,30 @@
     <div class="registration-header-wrapper">
         <div class="icon-wrap">
             <mat-icon (click)="ondialogClose()">close</mat-icon>
-        
+
         </div>
         <h2 class="text-center">EDIT USER</h2>
         <form class="user-form" [formGroup]="userForm">
             <div class="form-field-wrapper">
+                <!--FirstName-->
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>First Name</mat-label>
-                    <input matInput type="text" formControlName="firstName" appInputTrim>
+                    <input matInput type="text" formControlName="firstName" appOnlyAlphabet>
                     <mat-error *ngIf="hasError('firstName','required')">
                         FirstName is required!
                     </mat-error>
                 </mat-form-field>
+
+                <!--LastName-->
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Last Name</mat-label>
-                    <input matInput type="text" formControlName="lastName" appInputTrim>
+                    <input matInput type="text" formControlName="lastName" appOnlyAlphabet>
                     <mat-error *ngIf="hasError('lastName','required')">
                         LastName is required!
                     </mat-error>
                 </mat-form-field>
+
+                <!--Email-->
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput type="text" formControlName="email" appInputTrim>
@@ -33,6 +38,7 @@
                 </mat-form-field>
             </div>
             <div class="form-field-wrapper">
+                <!--Phone-->
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Phone</mat-label>
                     <input matInput type="text" formControlName="phone" minlength="10" maxlength="10" appOnlyNumeric>
@@ -43,6 +49,8 @@
                         Please enter valid phone number!
                     </mat-error>
                 </mat-form-field>
+
+                <!--Password-->
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Password</mat-label>
                     <input matInput type="password" formControlName="password" appInputTrim>
@@ -55,6 +63,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <!--Buttons-->
             <div class="example-button-row">
                 <button mat-raised-button (click)="resetUserFormInfo()">Reset</button>
                 <button mat-raised-button color="primary" (click)="updateUserInfo()">Update</button>

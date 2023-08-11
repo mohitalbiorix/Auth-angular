@@ -8,6 +8,6 @@ export class InputTrimDirective {
 
   @HostListener('input', ['$event.target.value'])
   trim(value: string) {
-    this.el.nativeElement.value = value.trimStart();
+    this.el.nativeElement.value = value.trim();
   }
 }

@@ -29,7 +29,8 @@ export class RegisterComponent implements OnInit {
     this.initUserForm();
   }
 
-  initUserForm() {
+  // Initialization of registration form
+  initUserForm(): void {
     this.userForm = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -53,25 +54,27 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  resetUserForm() {
+  // reset user form
+  resetUserForm(): void {
     this.userForm.reset();
   }
 
-  checkUserWithSameUserId(user: User) {
-    this.userService.getAllUser().subscribe({
-      next: (users: any) => {
+  // check if user register with same email id or not
+  checkUserWithSameEmailId(currentUser: User): void {
+    this.userService.getRegistredUsers().subscribe({
+      next: (users: User[]) => {
         const isEmailSame = users.find(
-          (user: any) => user.email === user.email
+          (user: User) => user.email === currentUser.email
         );
         if (isEmailSame) {
           this.notificationService.error(
             'This email is already register!, please try to other email!'
           );
         } else {
-          this.userService.createUser(user).subscribe({
+          this.userService.registration(currentUser).subscribe({
             next: () => {
               this.notificationService.success('Registration Successfull!');
-              this.router.navigate(['/login']);
+              this.router.navigate(['/']);
             },
             error: (err) => {
               this.notificationService.error('Something went wrong!');
@@ -86,7 +89,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  async registration() {
+  // save registration form
+  async saveRegistrationForm(): Promise<void> {
     const userValue = this.userForm.value;
     if (this.userForm.invalid) {
       return;
@@ -98,10 +102,11 @@ export class RegisterComponent implements OnInit {
       phone: userValue.phone,
       password: userValue.password,
     };
-    await this.checkUserWithSameUserId(user);
+    await this.checkUserWithSameEmailId(user);
   }
 
-  public hasError(controlName: string, errorName: string) {
+  // error function that showing error message
+  public hasError(controlName: string, errorName: string): boolean {
     return this.userForm.controls[controlName].hasError(errorName);
   }
 }

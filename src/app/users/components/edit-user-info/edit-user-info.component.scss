@@ -1,54 +1,55 @@
 .registration-header-wrapper {
-    margin-top: 25px;
+  margin-top: 25px;
 
-    .icon-wrap {
-      display: flex;
-      justify-content: end;
+  .icon-wrap {
+    display: flex;
+    justify-content: end;
 
-      .mat-icon {
-        cursor: pointer;
-      }
-
+    .mat-icon {
+      cursor: pointer;
     }
 
-      .mat-mdc-card-header {
-        text-align: center !important;
-        display: block !important;
-      }
-  
-      .user-form {
-        width: 100%;
-        margin: 0 auto;
-  
-        .form-field-wrapper {
-          display: flex;
-          margin-top: 40px;
-  
-          .form-field {
-            width: 100%;
-            margin-top: 5px;
-            margin-right: 20px;
-          }
-        }
-  
-        .example-button-row {
-          display: table-cell;
-          max-width: 600px;
-          float: right;
-        }
-  
-        .example-button-row .mat-mdc-button-base {
-          margin: 8px 8px 8px 0;
-        }
-      }
-  
-      .login-wrapp {
-        margin: 0 auto;
-        margin-bottom: 10px;
-        .mr-3 {
-          margin-right: 5px;
-        }
-      }
-  
-
   }
+
+  .mat-mdc-card-header {
+    text-align: center !important;
+    display: block !important;
+  }
+
+  .user-form {
+    width: 100%;
+    margin: 0 auto;
+
+    .form-field-wrapper {
+      display: flex;
+      margin-top: 40px;
+
+      .form-field {
+        width: 100%;
+        margin-top: 5px;
+        margin-right: 20px;
+      }
+    }
+
+    .example-button-row {
+      display: table-cell;
+      max-width: 600px;
+      float: right;
+    }
+
+    .example-button-row .mat-mdc-button-base {
+      margin: 8px 8px 8px 0;
+    }
+  }
+
+  .login-wrapp {
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    .mr-3 {
+      margin-right: 5px;
+    }
+  }
+
+
+}

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/shared/model/user.model';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-edit-user-info',
@@ -27,6 +26,7 @@ export class EditUserInfoComponent implements OnInit {
     }
   }
 
+  // patch value of user form
   setUserFormValue(user: User) {
     this.userForm.patchValue({
       firstName: user.firstName,
@@ -37,6 +37,7 @@ export class EditUserInfoComponent implements OnInit {
     });
   }
 
+  // initialization of user form
   initUserForm() {
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -55,18 +56,20 @@ export class EditUserInfoComponent implements OnInit {
     });
   }
 
+  // update user form
   updateUserInfo() {
     if (this.userForm.invalid) {
       return;
     }
     const user = {
       email: this.userForm.value.email,
-      password: this.userForm.value.password
-    }
+      password: this.userForm.value.password,
+    };
     this.authService.setAuthUserInfo(user);
-    this.dialogRef.close({user:this.userForm.value});
+    this.dialogRef.close({ user: this.userForm.value });
   }
 
+  // reset user form
   resetUserFormInfo() {
     this.userForm.patchValue({
       firstName: this.user.firstName,
@@ -77,10 +80,12 @@ export class EditUserInfoComponent implements OnInit {
     });
   }
 
+  // close dialoug of user form
   ondialogClose() {
-    this.dialogRef.close({user:null});
+    this.dialogRef.close({ user: null });
   }
 
+  // error function that showing error message
   public hasError(controlName: string, errorName: string) {
     return this.userForm.controls[controlName].hasError(errorName);
   }
