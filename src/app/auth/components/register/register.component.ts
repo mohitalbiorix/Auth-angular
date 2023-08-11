@@ -92,9 +92,6 @@ export class RegisterComponent implements OnInit {
   // save registration form
   async saveRegistrationForm(): Promise<void> {
     const userValue = this.userForm.value;
-    if (this.userForm.invalid) {
-      return;
-    }
     const user: User = {
       firstName: userValue.firstName,
       lastName: userValue.lastName,
@@ -102,6 +99,19 @@ export class RegisterComponent implements OnInit {
       phone: userValue.phone,
       password: userValue.password,
     };
+    if (
+      !user.firstName &&
+      !user.lastName &&
+      !user.email &&
+      !user.phone &&
+      !user.password &&
+      !user.confirm_password
+    ) {
+      this.notificationService.warning('All filed should be required!');
+    }
+    if (this.userForm.invalid) {
+      return;
+    }
     await this.checkUserWithSameEmailId(user);
   }
 
