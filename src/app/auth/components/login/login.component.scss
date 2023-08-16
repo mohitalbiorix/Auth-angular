@@ -1,10 +1,16 @@
 .login-header-wrapper {
   margin-top: 25px;
 
-  .card-wrapper {
+  .mat-mdc-card {
     .mat-mdc-card-header {
       text-align: center !important;
       display: block !important;
+      background-color: #3f51b5;
+      color: white;
+      border-radius: 3px;
+    }
+    .mat-mdc-card-content {
+      margin-top: 20px;
     }
 
     .user-form {
@@ -31,7 +37,6 @@
         margin: 8px 8px 8px 0;
       }
     }
-
   }
 
   .register-wrap {

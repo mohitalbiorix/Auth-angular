@@ -1,45 +1,51 @@
 .registration-header-wrapper {
   margin-top: 25px;
 
-  .card-wrapper {
-
-    // background-color: lightgray;
+  .mat-mdc-card {
     .mat-mdc-card-header {
       text-align: center !important;
       display: block !important;
+      background-color: #3f51b5;
+      color: white;
+      border-radius: 3px;
     }
 
-    .user-form {
-      // min-width: 150px;
-      // max-width: 500px;
-      width: 100%;
-      margin: 0 auto;
-
-      .form-field-wrapper {
-        display: flex;
-        margin-top: 15px;
-
-        .form-field {
-          width: 100%;
-          margin-top: 5px;
-          margin-right: 20px;
-        }
-      }
-
-      .example-button-row {
-        display: table-cell;
-        max-width: 600px;
-        float: right;
-        margin-top: 20px;
-      }
-
-      .example-button-row .mat-mdc-button-base {
-        margin: 8px 8px 8px 0;
-      }
-    }
-
-    .back-button {
+    .mat-mdc-card-content {
       margin-top: 20px;
     }
+  }
+
+
+  .user-form {
+    // min-width: 150px;
+    // max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+
+    .form-field-wrapper {
+      display: flex;
+      margin-top: 15px;
+
+      .form-field {
+        width: 100%;
+        margin-top: 5px;
+        margin-right: 20px;
+      }
+    }
+
+    .example-button-row {
+      display: table-cell;
+      max-width: 600px;
+      float: right;
+      margin-top: 20px;
+    }
+
+    .example-button-row .mat-mdc-button-base {
+      margin: 8px 8px 8px 0;
+    }
+  }
+
+  .back-button {
+    margin-top: 20px;
   }
 }

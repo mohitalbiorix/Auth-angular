@@ -11,6 +11,21 @@
     }
   }
 
+  .table-header-wrap {
+    text-align: center !important;
+    display: block !important;
+    background-color: #3f51b5;
+    color: white;
+    border-radius: 3px;
+    height: 70px;
+
+    .header {
+      margin: auto;
+      width: 100%;
+      padding: 19px;
+    }
+  }
+
   .mat-mdc-form-field {
     width: 30%;
   }

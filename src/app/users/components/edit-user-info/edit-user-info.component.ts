@@ -27,7 +27,7 @@ export class EditUserInfoComponent implements OnInit {
   }
 
   // patch value of user form
-  setUserFormValue(user: User) {
+  setUserFormValue(user: User): void {
     this.userForm.patchValue({
       firstName: user.firstName,
       lastName: user.lastName,
@@ -38,7 +38,7 @@ export class EditUserInfoComponent implements OnInit {
   }
 
   // initialization of user form
-  initUserForm() {
+  initUserForm(): void {
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -57,7 +57,7 @@ export class EditUserInfoComponent implements OnInit {
   }
 
   // update user form
-  updateUserInfo() {
+  updateUserInfo(): void {
     if (this.userForm.invalid) {
       return;
     }
@@ -70,7 +70,7 @@ export class EditUserInfoComponent implements OnInit {
   }
 
   // reset user form
-  resetUserFormInfo() {
+  resetUserFormInfo(): void {
     this.userForm.patchValue({
       firstName: this.user.firstName,
       lastName: this.user.lastName,
@@ -81,12 +81,12 @@ export class EditUserInfoComponent implements OnInit {
   }
 
   // close dialoug of user form
-  ondialogClose() {
+  ondialogClose(): void {
     this.dialogRef.close({ user: null });
   }
 
   // error function that showing error message
-  public hasError(controlName: string, errorName: string) {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.userForm.controls[controlName].hasError(errorName);
   }
 }

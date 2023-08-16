@@ -46,7 +46,7 @@ export class UserListComponent implements AfterViewInit {
   }
 
   // get all registered users from resolver route
-  getAllUser() {
+  getAllUser(): void {
     this.activatedRoute.data.subscribe({
       next: (usersData) => {
         const { users } = usersData;
@@ -57,13 +57,13 @@ export class UserListComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   // delete registered user
-  deleteUser(userId: number) {
+  deleteUser(userId: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialougComponent, {
       width: '400px',
     });
@@ -101,7 +101,7 @@ export class UserListComponent implements AfterViewInit {
   }
 
   // edit registerd user info
-  async editUserInfo(userId: number) {
+  async editUserInfo(userId: number): Promise<void> {
     let userData: User;
     this.userService.getUserById(userId).subscribe({
       next: (user) => {
@@ -147,20 +147,20 @@ export class UserListComponent implements AfterViewInit {
   }
 
   // reset filter input
-  resetFilterInput(input: HTMLInputElement) {
+  resetFilterInput(input: HTMLInputElement): void {
     input.value = '';
     const filterValue = input.value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   // apply filter on input
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   // logout user
-  logoutUser() {
+  logoutUser(): void {
     this.authService.removeUser();
     this.router.navigate(['/']);
     this.toastr.success('User Logout Successfull!');
